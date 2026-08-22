@@ -420,4 +420,49 @@
 <p class="font-body-md text-[14px] text-on-surface">Utilizamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa política.</p>
 <button class="bg-black text-white px-4 py-2 font-label-caps text-label-caps hover:bg-black/80 transition-colors w-full" data-accept-cookies type="button">ACEITAR</button>
 </div>
+<!-- Mobile menu -->
+<div class="visor-panel" id="mobile-menu" aria-hidden="true">
+<div class="visor-backdrop" data-action="close-panel"></div>
+<div class="visor-drawer p-8 gap-6">
+<div class="flex justify-between items-center mb-8">
+<span class="font-headline-md text-headline-md tracking-widest">VISOR</span>
+<button type="button" data-action="close-panel" aria-label="Fechar"><span class="material-symbols-outlined">close</span></button>
+</div>
+<nav class="flex flex-col gap-5">
+<a class="font-label-caps text-label-caps" data-nav-section href="#destaques">Óculos de Sol</a>
+<a class="font-label-caps text-label-caps" data-nav-section href="#destaques">Grau</a>
+<a class="font-label-caps text-label-caps" data-nav-section href="#destaques">Lentes de Contato</a>
+<a class="font-label-caps text-label-caps" data-nav-section href="#destaques">Mais Vendidos</a>
+<a class="font-label-caps text-label-caps" data-action="chat" href="#">Atendimento</a>
+</nav>
+</div>
+</div>
+
+<!-- Search panel -->
+<div class="visor-panel" id="search-panel" aria-hidden="true">
+<div class="visor-backdrop" data-action="close-panel"></div>
+<div class="visor-drawer p-8">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline-md text-2xl">Buscar</h2>
+<button type="button" data-action="close-panel" aria-label="Fechar"><span class="material-symbols-outlined">close</span></button>
+</div>
+<form id="search-form" class="flex flex-col gap-4">
+<input id="search-input" class="w-full border-b border-outline-variant bg-transparent py-3 font-body-md focus:outline-none focus:border-primary" placeholder="Óculos, armação, coleção…" type="search" autocomplete="off"/>
+<button class="bg-black text-white px-4 py-3 font-label-caps text-label-caps hover:bg-black/80 transition-colors" type="submit">BUSCAR</button>
+</form>
+</div>
+</div>
+
+<!-- Cart panel -->
+<div class="visor-panel" id="cart-panel" aria-hidden="true">
+<div class="visor-backdrop" data-action="close-panel"></div>
+<div class="visor-drawer p-8">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-2xl">Carrinho</h2>
+<button type="button" data-action="close-panel" aria-label="Fechar"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div id="cart-list" class="flex-1 overflow-y-auto"></div>
+</div>
+</div>
+
 </body></html>
