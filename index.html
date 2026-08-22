@@ -212,32 +212,32 @@
 <nav class="fixed top-10 w-full z-40 bg-surface/80 backdrop-blur-xl dark:bg-surface/80 border-b border-outline-variant/30 transition-all duration-300 ease-in-out">
 <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-4 px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
 <div class="hidden md:flex flex-wrap gap-x-5 gap-y-2 items-center justify-start min-w-0 pr-2">
-<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" href="#">Óculos de Sol</a>
-<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" href="#">Grau</a>
-<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" href="#">Lentes de Contato</a>
-<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" href="#">Mais Vendidos</a>
-<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" href="#">Garantia</a>
-<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" href="#">Atendimento</a>
+<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" data-nav-section href="#destaques">Óculos de Sol</a>
+<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" data-nav-section href="#destaques">Grau</a>
+<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" data-nav-section href="#destaques">Lentes de Contato</a>
+<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" data-nav-section href="#destaques">Mais Vendidos</a>
+<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" data-nav-section href="#destaques">Garantia</a>
+<a class="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors whitespace-nowrap" data-action="chat" href="#">Atendimento</a>
 </div>
-<button class="md:hidden text-on-surface justify-self-start" type="button" aria-label="Menu">
+<button class="md:hidden text-on-surface justify-self-start" type="button" aria-label="Menu" data-action="toggle-menu">
 <span class="material-symbols-outlined text-2xl">menu</span>
 </button>
-<a class="font-headline-md text-[28px] md:text-headline-md font-bold text-on-surface tracking-widest relative z-10 shrink-0 px-2 text-center" href="#">
+<a class="font-headline-md text-[28px] md:text-headline-md font-bold text-on-surface tracking-widest relative z-10 shrink-0 px-2 text-center" data-action="scroll-top" href="#">
                 VISOR
             </a>
 <div class="flex gap-4 items-center justify-end">
-<button class="text-on-surface hover:text-primary transition-colors" data-icon="favorite" type="button" aria-label="Favoritos">
+<button class="text-on-surface hover:text-primary transition-colors" data-action="open-favorites" type="button" aria-label="Favoritos">
 <span class="material-symbols-outlined">favorite</span>
 </button>
-<button class="text-on-surface hover:text-primary transition-colors" data-icon="search" type="button" aria-label="Buscar">
+<button class="text-on-surface hover:text-primary transition-colors" data-action="open-search" type="button" aria-label="Buscar">
 <span class="material-symbols-outlined">search</span>
 </button>
-<button class="text-on-surface hover:text-primary transition-colors" data-icon="person" type="button" aria-label="Conta">
+<button class="text-on-surface hover:text-primary transition-colors" data-action="open-account" type="button" aria-label="Conta">
 <span class="material-symbols-outlined">person</span>
 </button>
-<button class="text-on-surface hover:text-primary transition-colors relative" data-icon="shopping_cart" type="button" aria-label="Carrinho">
+<button class="text-on-surface hover:text-primary transition-colors relative" data-action="open-cart" type="button" aria-label="Carrinho">
 <span class="material-symbols-outlined">shopping_cart</span>
-<span class="absolute -top-1 -right-2 bg-primary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+<span class="absolute -top-1 -right-2 bg-primary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold" data-cart-count>2</span>
 </button>
 </div>
 </div>
