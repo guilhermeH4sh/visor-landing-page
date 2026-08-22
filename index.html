@@ -119,6 +119,86 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+#visor-toast {
+            position: fixed;
+            left: 50%;
+            bottom: 1.5rem;
+            transform: translateX(-50%) translateY(120%);
+            z-index: 80;
+            max-width: min(92vw, 28rem);
+            padding: 0.85rem 1.25rem;
+            background: #1a1c1c;
+            color: #fff;
+            font-family: "Hanken Grotesk", sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+        }
+        #visor-toast.is-visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        #visor-toast[data-tone="success"] { background: #9b3f25; }
+        #visor-toast[data-tone="warn"] { background: #6a5d43; }
+        .visor-panel {
+            position: fixed;
+            inset: 0;
+            z-index: 70;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .visor-panel.is-open {
+            visibility: visible;
+            pointer-events: auto;
+        }
+        .visor-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 28, 28, 0.45);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .visor-panel.is-open .visor-backdrop { opacity: 1; }
+        .visor-drawer {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: min(100%, 400px);
+            background: #f9f9f9;
+            transform: translateX(100%);
+            transition: transform 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .visor-panel.is-open .visor-drawer { transform: translateX(0); }
+        .visor-sheet {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: min(92vw, 520px);
+            background: #fff;
+            transform: translate(-50%, -46%) scale(0.96);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .visor-panel.is-open .visor-sheet {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        #cookie-banner.is-hiding {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.28s ease, transform 0.28s ease;
+        }
+        #mobile-menu .visor-drawer {
+            left: 0;
+            right: auto;
+            transform: translateX(-100%);
+        }
+        #mobile-menu.is-open .visor-drawer { transform: translateX(0); }
     </style>
 </head>
 <body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased relative">
