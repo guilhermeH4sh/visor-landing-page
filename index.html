@@ -244,40 +244,40 @@
 </nav>
 <main class="flex-grow pt-24">
 <!-- Full-bleed Hero -->
-<section class="relative h-[80vh] min-h-[520px] w-full flex items-center justify-center overflow-hidden bg-surface-variant">
+<section class="relative h-[80vh] min-h-[520px] w-full flex items-center justify-center overflow-hidden bg-surface-variant" id="topo">
 <img alt="Nova Coleção Horizonte — mulher com óculos VISOR em luz dourada" class="absolute inset-0 h-full w-full object-cover object-[center_30%]" decoding="async" fetchpriority="high" src="./assets/images/hero.jpg" width="1376" height="768"/>
 <div class="absolute inset-0 bg-gradient-to-b from-black/35 via-black/25 to-black/45"></div>
 <div class="relative z-10 text-center flex flex-col items-center gap-6 px-margin-mobile max-w-4xl">
 <h1 class="font-display-lg text-4xl sm:text-5xl md:text-display-lg text-white text-balance drop-shadow-sm">Nova Coleção Horizonte</h1>
-<a class="inline-flex items-center justify-center px-8 py-4 backdrop-blur-md bg-white/20 border border-white text-white font-label-caps text-label-caps hover:bg-white/30 transition-all duration-300 tracking-wider" href="#">
+<a class="inline-flex items-center justify-center px-8 py-4 backdrop-blur-md bg-white/20 border border-white text-white font-label-caps text-label-caps hover:bg-white/30 transition-all duration-300 tracking-wider" data-action="scroll-collection" href="#destaques">
                     VER COLEÇÃO
                 </a>
 </div>
 </section>
 <!-- Destaques da Loja Section -->
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="destaques">
 <div class="flex justify-between items-end mb-12 border-b border-outline-variant/30 pb-4">
 <h2 class="font-headline-md text-headline-md text-on-surface">Destaques da Loja</h2>
 <div class="flex gap-2">
-<button class="w-10 h-10 border border-outline-variant flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors">
+<button class="w-10 h-10 border border-outline-variant flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors" data-action="carousel-prev" type="button" aria-label="Anterior">
 <span class="material-symbols-outlined">arrow_back</span>
 </button>
-<button class="w-10 h-10 border border-outline-variant flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors">
+<button class="w-10 h-10 border border-outline-variant flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors" data-action="carousel-next" type="button" aria-label="Próximo">
 <span class="material-symbols-outlined">arrow_forward</span>
 </button>
 </div>
 </div>
-<div class="flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory">
+<div class="flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory" id="product-track">
 <!-- Product Card 1 -->
-<div class="min-w-[280px] md:min-w-[320px] flex-shrink-0 snap-start group cursor-pointer">
+<div class="min-w-[280px] md:min-w-[320px] flex-shrink-0 snap-start group cursor-pointer" data-product="vento" data-name="Óculos de Sol Vento" data-price="549">
 <div class="relative bg-secondary-fixed-dim/30 aspect-[4/5] overflow-hidden rounded-sm mb-4">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A striking digital installation art piece featuring glowing, generative geometric shapes suspended in a vast, minimalist gallery space. The room is illuminated by high-key, soft white lighting that creates a bright, modern light-mode aesthetic. The artwork relies on a sophisticated palette of deep blacks and pristine whites, punctuated by intense accents of vibrant red. The mood is serene yet technologically advanced." src="./assets/images/img-04.jpg"/>
+<img alt="Óculos de Sol Vento" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="./assets/images/img-04.jpg"/>
 <span class="absolute top-4 left-4 bg-primary text-on-primary px-2 py-1 font-label-caps text-[10px] tracking-wider uppercase">Novo</span>
 <div class="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-<button class="w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:text-primary transition-colors shadow-sm">
+<button class="w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:text-primary transition-colors shadow-sm" data-fav type="button" aria-label="Favoritar">
 <span class="material-symbols-outlined text-[18px]">favorite</span>
 </button>
-<button class="w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:text-primary transition-colors shadow-sm">
+<button class="w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:text-primary transition-colors shadow-sm" data-quick-view type="button" aria-label="Visualizar">
 <span class="material-symbols-outlined text-[18px]">visibility</span>
 </button>
 </div>
@@ -291,14 +291,14 @@
 </div>
 </div>
 <!-- Product Card 2 -->
-<div class="min-w-[280px] md:min-w-[320px] flex-shrink-0 snap-start group cursor-pointer">
+<div class="min-w-[280px] md:min-w-[320px] flex-shrink-0 snap-start group cursor-pointer" data-product="lume" data-name="Armação Clássica Lume" data-price="489">
 <div class="relative bg-secondary-fixed-dim/30 aspect-[4/5] overflow-hidden rounded-sm mb-4">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A striking digital installation art piece featuring glowing, generative geometric shapes suspended in a vast, minimalist gallery space. The room is illuminated by high-key, soft white lighting that creates a bright, modern light-mode aesthetic. The artwork relies on a sophisticated palette of deep blacks and pristine whites, punctuated by intense accents of vibrant red. The mood is serene yet technologically advanced." src="./assets/images/img-06.jpg"/>
+<img alt="Armação Clássica Lume" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="./assets/images/img-06.jpg"/>
 <div class="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-<button class="w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:text-primary transition-colors shadow-sm">
+<button class="w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:text-primary transition-colors shadow-sm" data-fav type="button" aria-label="Favoritar">
 <span class="material-symbols-outlined text-[18px]">favorite</span>
 </button>
-<button class="w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:text-primary transition-colors shadow-sm">
+<button class="w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white hover:text-primary transition-colors shadow-sm" data-quick-view type="button" aria-label="Visualizar">
 <span class="material-symbols-outlined text-[18px]">visibility</span>
 </button>
 </div>
@@ -314,10 +314,10 @@
 </div>
 </section>
 <!-- Social Grid -->
-<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto bg-surface-container-lowest">
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto bg-surface-container-lowest" id="social">
 <div class="text-center mb-12">
 <h2 class="font-headline-md text-headline-md text-on-surface mb-4">@visor.oculos</h2>
-<a class="inline-flex items-center justify-center px-6 py-3 bg-black text-white font-label-caps text-label-caps hover:bg-black/80 transition-colors" href="#">
+<a class="inline-flex items-center justify-center px-6 py-3 bg-black text-white font-label-caps text-label-caps hover:bg-black/80 transition-colors" data-action="instagram" href="#">
                     SIGA-NOS
                 </a>
 </div>
