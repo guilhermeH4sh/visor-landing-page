@@ -362,13 +362,13 @@
 <div class="col-span-1 md:col-span-1 flex flex-col gap-6 pr-8">
 <span class="font-headline-md text-headline-md text-primary font-bold tracking-widest">VISOR</span>
 <p class="font-body-md text-body-md">Inscreva-se para receber novidades, ofertas exclusivas e dicas de estilo.</p>
-<form class="flex flex-col gap-4">
+<form class="flex flex-col gap-4" id="newsletter-form">
 <div class="relative border-b border-outline-variant pb-2">
-<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md placeholder:text-on-secondary-fixed-variant/70" placeholder="Seu Nome" type="text"/>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md placeholder:text-on-secondary-fixed-variant/70" name="name" placeholder="Seu Nome" type="text" required/>
 </div>
 <div class="relative border-b border-outline-variant pb-2 flex items-center">
-<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md placeholder:text-on-secondary-fixed-variant/70" placeholder="Seu Email" type="email"/>
-<button class="text-primary hover:text-primary-container transition-colors" type="submit">
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md placeholder:text-on-secondary-fixed-variant/70" name="email" placeholder="Seu Email" type="email" required/>
+<button class="text-primary hover:text-primary-container transition-colors" type="submit" aria-label="Inscrever">
 <span class="material-symbols-outlined">arrow_forward</span>
 </button>
 </div>
@@ -377,30 +377,30 @@
 <!-- Links 1 -->
 <div class="col-span-1 flex flex-col gap-4">
 <h4 class="font-label-caps text-label-caps uppercase text-primary mb-2">Menu</h4>
-<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Óculos de Sol</a>
-<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Grau</a>
-<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Lentes de Contato</a>
-<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Mais Vendidos</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" data-nav-section href="#destaques">Óculos de Sol</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" data-nav-section href="#destaques">Grau</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" data-nav-section href="#destaques">Lentes de Contato</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" data-nav-section href="#destaques">Mais Vendidos</a>
 </div>
 <!-- Links 2 -->
 <div class="col-span-1 flex flex-col gap-4">
 <h4 class="font-label-caps text-label-caps uppercase text-primary mb-2">Legal</h4>
-<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Política de Privacidade</a>
-<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Termos de Serviço</a>
-<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Trocas e Devoluções</a>
-<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Garantia</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#" data-action="chat">Política de Privacidade</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#" data-action="chat">Termos de Serviço</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#" data-action="chat">Trocas e Devoluções</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#" data-action="chat">Garantia</a>
 </div>
 <!-- Links 3 -->
 <div class="col-span-1 flex flex-col gap-4">
 <h4 class="font-label-caps text-label-caps uppercase text-primary mb-2">Contato</h4>
-<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Atendimento ao Cliente</a>
-<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Lojas Físicas</a>
-<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Trabalhe Conosco</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" data-action="chat" href="#">Atendimento ao Cliente</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" data-action="chat" href="#">Lojas Físicas</a>
+<a class="font-body-md text-body-md text-on-secondary-fixed-variant hover:text-primary transition-colors" data-action="chat" href="#">Trabalhe Conosco</a>
 <div class="flex gap-4 mt-4">
-<a class="text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">
+<a class="text-on-secondary-fixed-variant hover:text-primary transition-colors" data-action="instagram" href="#" aria-label="Instagram">
 <span class="material-symbols-outlined">camera_alt</span>
 </a>
-<a class="text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">
+<a class="text-on-secondary-fixed-variant hover:text-primary transition-colors" data-action="instagram" href="#" aria-label="YouTube">
 <span class="material-symbols-outlined">play_circle</span>
 </a>
 </div>
@@ -416,8 +416,8 @@
 </div>
 </footer>
 <!-- Cookie Banner -->
-<div class="fixed bottom-4 left-4 right-4 md:right-auto md:w-96 bg-surface p-4 shadow-lg border border-outline-variant/30 z-50 flex flex-col gap-4 rounded-sm">
+<div class="fixed bottom-4 left-4 right-4 md:right-auto md:w-96 bg-surface p-4 shadow-lg border border-outline-variant/30 z-50 flex flex-col gap-4 rounded-sm" id="cookie-banner">
 <p class="font-body-md text-[14px] text-on-surface">Utilizamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa política.</p>
-<button class="bg-black text-white px-4 py-2 font-label-caps text-label-caps hover:bg-black/80 transition-colors w-full">ACEITAR</button>
+<button class="bg-black text-white px-4 py-2 font-label-caps text-label-caps hover:bg-black/80 transition-colors w-full" data-accept-cookies type="button">ACEITAR</button>
 </div>
 </body></html>
