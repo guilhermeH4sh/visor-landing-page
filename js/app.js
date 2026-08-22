@@ -229,7 +229,122 @@
     }
   });
 
-  
-  // Handlers de produto/newsletter entram no próximo commit
+  // Product favorite / quick view / add
+  $$("[data-product]").forEach((card) => {
+    const id = card.dataset.product;
+    const name = card.dataset.name;
+    const price = Number(card.dataset.price || 0);
+
+    card.querySelector("[data-fav]")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const btn = e.currentTarget;
+      const icon = btn.querySelector(".material-symbols-outlined");
+      if (state.favorites.has(id)) {
+        state.favorites.delete(id);
+        icon?.classList.remove("filled-icon", "text-primary");
+        toast(`${name} removido dos favoritos.`);
+      } else {
+        state.favorites.add(id);
+        icon?.classList.add("filled-icon", "text-primary");
+        toast(`${name} salvo nos favoritos.`);
+      }
+    });
+
+    card.querySelector("[data-quick-view]")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openQuickView({ id, name, price, img: card.querySelector("img")?.src });
+    });
+
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("button")) return;
+      openQuickView({ id, name, price, img: card.querySelector("img")?.src });
+    });
+  });
+
+  function openQuickView({ id, name, price, img }) {
+    if (!quickView) return;
+    $("#qv-title", quickView).textContent = name;
+    $("#qv-price", quickView).textContent = money(price);
+    const imgEl = $("#qv-image", quickView);
+    if (imgEl && img) {
+      imgEl.src = img;
+      imgEl.alt = name;
+    }
+    const addBtn = $("#qv-add", quickView);
+    if (addBtn) {
+      addBtn.onclick = () => {
+        if (!state.cart.some((i) => i.id === id)) {
+          state.cart.push({ id, name, price });
+          toast(`${name} adicionado ao carrinho.`, { tone: "success" });
+        } else {
+          toast(`${name} já está no carrinho.`);
+        }
+        syncCart();
+        closePanel(quickView);
+        openPanel(cartPanel);
+      };
+    }
+    openPanel(quickView);
+  }
+
+  // Search
+  $("#search-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const q = ($("#search-input")?.value || "").trim();
+    if (!q) {
+      toast("Digite o que você procura.", { tone: "warn" });
+      return;
+    }
+    closePanel(searchPanel);
+    $("#destaques")?.scrollIntoView({ behavior: "smooth" });
+    toast(`Buscando “${q}” nos destaques…`);
+  });
+
+  // Newsletter
+  $("#newsletter-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const name = form.querySelector('[name="name"]')?.value?.trim();
+    const email = form.querySelector('[name="email"]')?.value?.trim();
+    if (!name || !email || !email.includes("@")) {
+      toast("Preencha nome e um e-mail válido.", { tone: "warn" });
+      return;
+    }
+    form.reset();
+    toast(`Bem-vindo(a), ${name}! Novidades VISOR no seu e-mail.`, {
+      tone: "success",
+    });
+  });
+
+  // Nav category links
+  $$("[data-nav-section]").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const label = link.textContent.trim();
+      closePanel(mobileMenu);
+      $("#destaques")?.scrollIntoView({ behavior: "smooth" });
+      toast(`Categoria: ${label}`);
+    });
+  });
+
+  // Escape closes panels
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeAllPanels();
+      closePanel(quickView);
+    }
+  });
+
+  // Backdrop click
+  $$(".visor-panel").forEach((panel) => {
+    panel.addEventListener("click", (e) => {
+      if (e.target === panel || e.target.classList.contains("visor-backdrop")) {
+        closePanel(panel);
+      }
+    });
+  });
+
   syncCart();
 })();
