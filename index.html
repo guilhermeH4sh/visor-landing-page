@@ -465,4 +465,24 @@
 </div>
 </div>
 
+<!-- Quick view -->
+<div class="visor-panel" id="quick-view" aria-hidden="true">
+<div class="visor-backdrop" data-action="close-panel"></div>
+<div class="visor-sheet overflow-hidden">
+<button type="button" class="absolute top-3 right-3 z-10 bg-white/90 w-9 h-9 flex items-center justify-center" data-action="close-panel" aria-label="Fechar">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="aspect-[4/5] bg-surface-variant max-h-[50vh]">
+<img id="qv-image" class="w-full h-full object-cover" alt=""/>
+</div>
+<div class="p-6 flex flex-col gap-3">
+<h3 id="qv-title" class="font-headline-md text-2xl text-on-surface"></h3>
+<p id="qv-price" class="font-body-md text-primary font-semibold text-lg"></p>
+<p class="font-body-md text-sm text-on-surface-variant">Lentes com proteção UV400 inclusas. Frete grátis acima de R$399.</p>
+<button id="qv-add" type="button" class="mt-2 w-full bg-black text-white px-4 py-3 font-label-caps text-label-caps hover:bg-black/80 transition-colors">ADICIONAR AO CARRINHO</button>
+</div>
+</div>
+</div>
+
+<div id="visor-toast" role="status" aria-live="polite"></div>
 </body></html>
