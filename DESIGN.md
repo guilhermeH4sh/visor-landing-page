@@ -118,17 +118,3 @@ The palette is inspired by natural earth tones and high-fashion materials.
 ## Layout & Spacing
 
 Fixed grid on desktop (12 columns, 64px margins), 8px base unit, large section gaps (120px+). Mobile uses 4 columns with 20px margins.
-
-
----
-
-## Migração do template (2026-08)
-
-A implementação visual ativa passou a ser o HTML consolidado da home (`index.html`), com mídia em `assets/template/`.
-
-Diretrizes mantidas:
-
-- Primária terracotta / tipografia editorial
-- Hero full-bleed
-- Navegação sem sobreposição de marca
-- Evolução incremental de interação sem regressão visual

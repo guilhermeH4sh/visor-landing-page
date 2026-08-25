@@ -1,8 +1,6 @@
 {
-  "title": "VISOR E-commerce Minimalista",
+  "title": "VISOR Eyewear",
   "activeTemplate": "index.html",
-  "legacyTemplate": "index.legacy-stich.html",
   "assets": "assets/template/",
-  "updatedAt": "2026-08-25",
-  "notes": "Home de produção baseada no template HTML limpo; assets localizados; sem fingerprints de export."
+  "updatedAt": "2026-08-25"
 }
