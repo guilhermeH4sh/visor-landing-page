@@ -1,0 +1,8 @@
+{
+  "title": "VISOR E-commerce Minimalista",
+  "activeTemplate": "index.html",
+  "legacyTemplate": "index.legacy-stich.html",
+  "assets": "assets/template/",
+  "updatedAt": "2026-08-25",
+  "notes": "Home de produção baseada no template HTML limpo; assets localizados; sem fingerprints de export."
+}
