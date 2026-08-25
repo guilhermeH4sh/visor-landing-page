@@ -1,32 +1,36 @@
 # VISOR Landing Page
 
-Landing page editorial da marca **VISOR** (óculos premium), exportada a partir do projeto Stitch *VISOR E-commerce Minimalista*.
+Landing editorial da marca **VISOR** (óculos premium).
 
-## Stack
+## Template vigente
 
-- HTML semântico
-- Tailwind CSS (CDN)
-- Tipografia: Playfair Display + Hanken Grotesk
+A home atual (`index.html`) é o template de produção consolidado:
 
-## Estrutura
+- HTML estático de alta fidelidade
+- Tailwind CSS v4 embutido
+- Tipografia Playfair Display + Hanken Grotesk
+- Imagens em `assets/template/`
+- Sem marcadores de ferramenta de exportação
 
-```
-├── index.html                 # Página principal
-├── screens/home-editorial.html
-├── assets/images/             # Imagens da home (inclui hero)
-├── assets/screenshots/        # Referências visuais do Stitch
-├── DESIGN.md                  # Design system
-└── stitch-project.json        # Metadados do projeto Stitch
-```
+A versão Stitch anterior permanece em `index.legacy-stich.html` apenas como referência.
 
 ## Como visualizar
-
-Abra `index.html` no navegador, ou:
 
 ```powershell
 start index.html
 ```
 
+## Estrutura
+
+```
+├── index.html
+├── index.legacy-stich.html
+├── screens/home-editorial.html
+├── assets/template/
+├── DESIGN.md
+└── stitch-project.json
+```
+
 ## Design system
 
-Cores e tipografia estão documentadas em [`DESIGN.md`](./DESIGN.md). Primária terracotta (`#9b3f25`), superfície clara, estética editorial minimalista.
+Ver [`DESIGN.md`](./DESIGN.md).
