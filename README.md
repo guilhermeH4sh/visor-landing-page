@@ -27,3 +27,15 @@ start index.html
 ## Design system
 
 Ver [`DESIGN.md`](./DESIGN.md).
+
+
+## SEO
+
+Base pública configurada: `https://guilhermeh4sh.github.io/visor-landing-page`
+
+Arquivos de suporte:
+
+- `robots.txt`
+- `sitemap.xml`
+- `site.webmanifest`
+- Metadados Open Graph / Twitter e JSON-LD em `index.html`
