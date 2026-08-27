@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://guilhermeh4sh.github.io/visor-landing-page/sitemap.xml
