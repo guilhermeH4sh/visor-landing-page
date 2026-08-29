@@ -2,5 +2,20 @@
   "title": "VISOR Eyewear",
   "activeTemplate": "index.html",
   "assets": "assets/template/",
-  "updatedAt": "2026-08-25"
+  "interactiveLayer": {
+    "css": "css/app.css",
+    "entry": "js/app.js",
+    "shell": "partials/app-shell.html"
+  },
+  "features": [
+    "cart",
+    "search",
+    "favorites",
+    "quickview",
+    "mobile-nav",
+    "newsletter",
+    "cookies",
+    "whatsapp"
+  ],
+  "updatedAt": "2026-08-28"
 }
