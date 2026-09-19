@@ -1,14 +1,21 @@
 import { formatPrice } from './store.js';
-import { findProduct } from './catalog.js';
+import { findProduct, stockLabel, stars } from './catalog.js';
 import { openModal, closeModal } from './panels.js';
 import { addToCart } from './cart.js';
 import { toggleFavorite, isFavorite } from './favorites.js';
+import { trackRecent } from './recent.js';
 
 const content = () => document.getElementById('visor-quickview-content');
 
 export function openQuickView(product) {
   const el = content();
   if (!el || !product) return;
+
+  trackRecent(product.id);
+
+  const stock = stockLabel(product.stock ?? 10);
+  const colors = product.colors || [];
+  const sizes = product.sizes || ['Único'];
 
   el.innerHTML = `
     <div class="visor-quickview">
@@ -17,14 +24,54 @@ export function openQuickView(product) {
         ${product.badge ? `<span class="eyebrow text-primary">${product.badge}</span>` : ''}
         <h3>${product.name}</h3>
         <p class="text-sm text-muted-foreground">${product.subtitle}</p>
+        <div class="visor-rating">
+          <span class="visor-rating__stars" aria-hidden="true">${stars(product.rating || 0)}</span>
+          <span>${(product.rating || 0).toFixed(1)} · ${product.reviews || 0} avaliações</span>
+        </div>
         <p class="visor-price">${formatPrice(product.price)}</p>
+        <p class="visor-stock visor-stock--${stock.tone}">${stock.text}</p>
+        ${
+          colors.length
+            ? `<p class="text-xs text-muted-foreground mt-3">Cor</p>
+               <div class="visor-variants" data-kind="color">
+                 ${colors
+                   .map(
+                     (c, i) =>
+                       `<button type="button" class="visor-variant visor-variant--color${i === 0 ? ' is-active' : ''}" data-value="${c.id}" title="${c.label}" style="background:${c.hex}" aria-label="${c.label}"></button>`,
+                   )
+                   .join('')}
+               </div>`
+            : ''
+        }
+        ${
+          sizes.length
+            ? `<p class="text-xs text-muted-foreground mt-3">Tamanho</p>
+               <div class="visor-variants" data-kind="size">
+                 ${sizes
+                   .map(
+                     (s, i) =>
+                       `<button type="button" class="visor-variant${i === 0 ? ' is-active' : ''}" data-value="${s}">${s}</button>`,
+                   )
+                   .join('')}
+               </div>`
+            : ''
+        }
         <p class="text-xs text-muted-foreground mt-2">6x sem juros · Estojo em couro vegetal incluso</p>
         <div style="display:flex;gap:0.5rem;margin-top:1.5rem;flex-wrap:wrap">
-          <button type="button" class="visor-btn visor-btn--primary" id="visor-qv-add">Adicionar à sacola</button>
+          <button type="button" class="visor-btn visor-btn--primary" id="visor-qv-add" ${product.stock <= 0 ? 'disabled' : ''}>Adicionar à sacola</button>
           <button type="button" class="visor-btn visor-btn--ghost" id="visor-qv-fav">${isFavorite(product.id) ? 'Remover favorito' : 'Favoritar'}</button>
         </div>
       </div>
     </div>`;
+
+  el.querySelectorAll('.visor-variants').forEach((group) => {
+    group.addEventListener('click', (e) => {
+      const btn = e.target.closest('.visor-variant');
+      if (!btn) return;
+      group.querySelectorAll('.visor-variant').forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+    });
+  });
 
   el.querySelector('#visor-qv-add')?.addEventListener('click', () => {
     addToCart(product.id);
