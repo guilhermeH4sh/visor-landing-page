@@ -55,6 +55,33 @@ export const Store = {
   setAccount(account) {
     write(STORAGE_KEYS.account, account);
   },
+
+  getCoupon() {
+    return read(STORAGE_KEYS.coupon, null);
+  },
+
+  setCoupon(code) {
+    write(STORAGE_KEYS.coupon, code);
+    window.dispatchEvent(new CustomEvent('visor:coupon'));
+  },
+
+  getRecent() {
+    return read(STORAGE_KEYS.recent, []);
+  },
+
+  setRecent(ids) {
+    write(STORAGE_KEYS.recent, ids);
+    window.dispatchEvent(new CustomEvent('visor:recent'));
+  },
+
+  getCompare() {
+    return read(STORAGE_KEYS.compare, []);
+  },
+
+  setCompare(ids) {
+    write(STORAGE_KEYS.compare, ids);
+    window.dispatchEvent(new CustomEvent('visor:compare'));
+  },
 };
 
 export function formatPrice(value) {
