@@ -1,0 +1,463 @@
+/* VISOR — refinamentos profissionais (v2) */
+
+/* Barra de progresso de leitura */
+.visor-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 130;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, #9b3f25, #c46a4a);
+  pointer-events: none;
+  transition: width 0.08s linear;
+}
+
+/* Voltar ao topo */
+.visor-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid hsl(30 15% 82%);
+  border-radius: 2px;
+  background: hsl(40 33% 97% / 0.95);
+  color: hsl(20 8% 28%);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s, background 0.2s;
+  box-shadow: 0 6px 20px hsl(20 10% 15% / 0.08);
+}
+
+.visor-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.visor-top:hover {
+  background: #fff;
+  color: #9b3f25;
+}
+
+.visor-top svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* Filtros da coleção */
+.visor-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin: 0 0 1.75rem;
+}
+
+.visor-filters__label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(20 8% 45%);
+  margin-right: 0.25rem;
+}
+
+.visor-chip {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid hsl(30 15% 82%);
+  border-radius: 2px;
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: hsl(20 8% 35%);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.visor-chip:hover {
+  border-color: #9b3f25;
+  color: #9b3f25;
+}
+
+.visor-chip.is-active {
+  background: #9b3f25;
+  border-color: #9b3f25;
+  color: #fff;
+}
+
+.visor-filters select {
+  margin-left: auto;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid hsl(30 15% 82%);
+  border-radius: 2px;
+  background: #fff;
+  font-size: 0.8125rem;
+  color: hsl(20 8% 28%);
+}
+
+#colecao article.visor-hidden {
+  display: none;
+}
+
+/* Estoque */
+.visor-stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.visor-stock::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.visor-stock--ok {
+  color: hsl(150 35% 32%);
+}
+
+.visor-stock--low {
+  color: hsl(32 80% 38%);
+}
+
+.visor-stock--out {
+  color: hsl(0 45% 42%);
+}
+
+/* Avaliações */
+.visor-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: hsl(20 8% 40%);
+}
+
+.visor-rating__stars {
+  color: #9b3f25;
+  letter-spacing: 0.05em;
+}
+
+/* Cupom */
+.visor-coupon {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.visor-coupon input {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid hsl(30 15% 82%);
+  border-radius: 2px;
+  font-size: 0.8125rem;
+}
+
+.visor-coupon input:focus {
+  outline: none;
+  border-color: #9b3f25;
+}
+
+.visor-discount-row {
+  color: hsl(150 35% 28%);
+}
+
+/* Comparar */
+.visor-compare-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 85;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.25rem;
+  background: hsl(20 12% 18%);
+  color: #fff;
+  transform: translateY(100%);
+  transition: transform 0.4s var(--visor-ease);
+}
+
+.visor-compare-bar.is-visible {
+  transform: translateY(0);
+}
+
+.visor-compare-bar__thumbs {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;
+  overflow-x: auto;
+}
+
+.visor-compare-bar__thumbs img {
+  width: 44px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid hsl(40 20% 40%);
+}
+
+.visor-compare-toggle {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  z-index: 2;
+  padding: 0.25rem 0.45rem;
+  border: none;
+  border-radius: 2px;
+  background: hsl(40 33% 97% / 0.95);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#colecao article:hover .visor-compare-toggle,
+#colecao article:focus-within .visor-compare-toggle {
+  opacity: 1;
+}
+
+.visor-compare-toggle.is-active {
+  opacity: 1;
+  background: #9b3f25;
+  color: #fff;
+}
+
+.visor-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.visor-compare-table th,
+.visor-compare-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid hsl(30 15% 88%);
+  text-align: left;
+  vertical-align: top;
+}
+
+.visor-compare-table img {
+  width: 96px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+/* Lightbox Instagram */
+.visor-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 125;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(18, 14, 12, 0.88);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s, visibility 0.35s;
+}
+
+.visor-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.visor-lightbox__figure {
+  position: relative;
+  max-width: min(900px, 100%);
+  max-height: 90dvh;
+}
+
+.visor-lightbox__figure img {
+  max-width: 100%;
+  max-height: 82dvh;
+  object-fit: contain;
+  border-radius: 2px;
+}
+
+.visor-lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 2px;
+  background: hsl(40 33% 97% / 0.9);
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.visor-lightbox__nav--prev {
+  left: -0.5rem;
+}
+
+.visor-lightbox__nav--next {
+  right: -0.5rem;
+}
+
+@media (min-width: 768px) {
+  .visor-lightbox__nav--prev {
+    left: -3rem;
+  }
+  .visor-lightbox__nav--next {
+    right: -3rem;
+  }
+}
+
+/* Vistos recentemente */
+.visor-recent {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid hsl(30 15% 88%);
+}
+
+.visor-recent h3 {
+  margin: 0 0 1rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+}
+
+.visor-recent__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.visor-recent__card {
+  display: block;
+  border: none;
+  padding: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.visor-recent__card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.visor-recent__card strong {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.visor-recent__card span {
+  font-size: 0.75rem;
+  color: #9b3f25;
+  font-weight: 600;
+}
+
+/* Variantes no quick view */
+.visor-variants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0 0.25rem;
+}
+
+.visor-variant {
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 0.55rem;
+  border: 1px solid hsl(30 15% 82%);
+  border-radius: 2px;
+  background: #fff;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.visor-variant.is-active {
+  border-color: #9b3f25;
+  color: #9b3f25;
+  box-shadow: inset 0 0 0 1px #9b3f25;
+}
+
+.visor-variant--color {
+  width: 1.75rem;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border-radius: 999px;
+}
+
+/* Atalhos hint */
+.visor-kbd-hint {
+  position: fixed;
+  bottom: 5.5rem;
+  left: 50%;
+  z-index: 70;
+  transform: translateX(-50%);
+  padding: 0.45rem 0.85rem;
+  background: hsl(20 12% 18% / 0.92);
+  color: #fff;
+  font-size: 0.6875rem;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.visor-kbd-hint.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visor-reveal,
+  .visor-panel,
+  .visor-overlay,
+  .visor-toast,
+  .visor-progress,
+  .visor-top,
+  .visor-compare-bar,
+  .visor-lightbox {
+    transition: none !important;
+  }
+
+  .visor-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
