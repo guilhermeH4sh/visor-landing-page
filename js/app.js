@@ -7,6 +7,13 @@ import { bindNav, initReveal, bindPromoMarquee } from './nav.js';
 import { bindNewsletter } from './newsletter.js';
 import { initCookies, bindWhatsApp } from './cookies.js';
 import { findProduct, productFromArticle } from './catalog.js';
+import { initFilters, enrichProductCards } from './filters.js';
+import { bindCoupon } from './coupon.js';
+import { initRecent } from './recent.js';
+import { initCompare } from './compare.js';
+import { initLightbox } from './lightbox.js';
+import { initScrollChrome } from './scroll.js';
+import { initShortcuts } from './shortcuts.js';
 
 function bindPanelCloseButtons() {
   document.querySelectorAll('[data-close]').forEach((btn) => {
@@ -34,13 +41,21 @@ function init() {
   bindNav();
   bindPromoMarquee();
   initReveal();
+  initScrollChrome();
+  enrichProductCards();
+  initFilters();
   initCart();
   bindCartPanel();
+  bindCoupon();
   bindSearch();
   initFavorites();
   bindFavorites();
   bindQuickView();
   bindAddToCartButtons();
+  initRecent();
+  initCompare();
+  initLightbox();
+  initShortcuts();
   bindNewsletter();
   initCookies();
   bindWhatsApp();

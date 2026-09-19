@@ -1,7 +1,9 @@
 <div id="visor-app-root" aria-live="polite">
+  <div id="visor-progress" class="visor-progress" aria-hidden="true"></div>
   <div id="visor-overlay" class="visor-overlay" aria-hidden="true"></div>
 
   <div id="visor-toast-stack" class="visor-toast-stack"></div>
+  <div id="visor-kbd-hint" class="visor-kbd-hint" aria-hidden="true"></div>
 
   <div id="visor-search" class="visor-search-bar" role="search" aria-hidden="true">
     <div style="position:relative;max-width:640px;margin:0 auto">
@@ -30,8 +32,14 @@
     </div>
     <div class="visor-panel__body" id="visor-cart-list"></div>
     <div class="visor-panel__foot">
+      <form id="visor-coupon-form" class="visor-coupon">
+        <input type="text" name="coupon" placeholder="Cupom (ex: VISOR10)" aria-label="Código do cupom" autocomplete="off"/>
+        <button type="submit" class="visor-btn visor-btn--ghost" style="width:auto">Aplicar</button>
+      </form>
+      <button type="button" class="visor-btn visor-btn--link" id="visor-coupon-clear" style="margin-bottom:0.75rem">Remover cupom</button>
       <p id="visor-shipping-note" class="visor-shipping-note"></p>
       <div class="visor-total-row"><span>Subtotal</span><span id="visor-cart-subtotal">R$ 0,00</span></div>
+      <div class="visor-total-row visor-discount-row" id="visor-discount-row" hidden><span>Desconto</span><span id="visor-cart-discount">R$ 0,00</span></div>
       <div class="visor-total-row"><span>Frete</span><span id="visor-cart-shipping">—</span></div>
       <div class="visor-total-row"><strong>Total</strong><strong id="visor-cart-total">R$ 0,00</strong></div>
       <button type="button" class="visor-btn visor-btn--primary" id="visor-checkout">Finalizar pedido</button>
@@ -67,6 +75,39 @@
     </div>
   </div>
 
+  <div id="visor-compare" class="visor-modal" aria-hidden="true" role="dialog" aria-label="Comparar modelos">
+    <div class="visor-modal__card" style="width:min(960px,100%)">
+      <button type="button" class="visor-close" id="visor-compare-close" aria-label="Fechar comparação" style="position:absolute;top:1rem;right:1rem;z-index:2;background:#fff">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <div style="padding:2rem 1.5rem 1.5rem">
+        <h2 class="visor-panel__title" style="margin-bottom:1rem">Comparar</h2>
+        <div id="visor-compare-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="visor-compare-bar" class="visor-compare-bar" aria-live="polite">
+    <div class="visor-compare-bar__thumbs"></div>
+    <span data-compare-count>0</span>
+    <div style="display:flex;gap:0.5rem">
+      <button type="button" class="visor-btn visor-btn--ghost" id="visor-compare-clear" style="width:auto;color:#fff;border-color:hsl(40 20% 40%)">Limpar</button>
+      <button type="button" class="visor-btn visor-btn--primary" id="visor-compare-open" style="width:auto">Comparar</button>
+    </div>
+  </div>
+
+  <div id="visor-lightbox" class="visor-lightbox" aria-hidden="true" role="dialog" aria-label="Galeria">
+    <figure class="visor-lightbox__figure">
+      <button type="button" class="visor-lightbox__nav visor-lightbox__nav--prev" id="visor-lightbox-prev" aria-label="Anterior">‹</button>
+      <img id="visor-lightbox-img" src="" alt=""/>
+      <button type="button" class="visor-lightbox__nav visor-lightbox__nav--next" id="visor-lightbox-next" aria-label="Próxima">›</button>
+      <figcaption id="visor-lightbox-caption" style="color:#fff;text-align:center;margin-top:0.75rem;font-size:0.8125rem"></figcaption>
+      <button type="button" class="visor-close" id="visor-lightbox-close" aria-label="Fechar galeria" style="position:absolute;top:-2.5rem;right:0;color:#fff">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </figure>
+  </div>
+
   <div id="visor-cookie" class="visor-cookie" role="dialog" aria-label="Cookies">
     <div class="visor-cookie__inner">
       <p>Utilizamos cookies para melhorar sua experiência e medir o desempenho da loja. Você pode aceitar todos ou apenas os essenciais.</p>
@@ -76,6 +117,10 @@
       </div>
     </div>
   </div>
+
+  <button type="button" id="visor-top" class="visor-top" aria-label="Voltar ao topo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
 
   <a id="visor-whatsapp" class="visor-whatsapp" href="#" aria-label="Falar no WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
