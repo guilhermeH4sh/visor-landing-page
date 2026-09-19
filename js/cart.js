@@ -3,12 +3,15 @@ import { Store, formatPrice } from './store.js';
 import { findProduct } from './catalog.js';
 import { openPanel } from './panels.js';
 import { toast } from './toast.js';
+import { discountAmount, resolveCoupon } from './coupon.js';
 
 const listEl = () => document.getElementById('visor-cart-list');
 const subtotalEl = () => document.getElementById('visor-cart-subtotal');
 const shippingEl = () => document.getElementById('visor-cart-shipping');
 const totalEl = () => document.getElementById('visor-cart-total');
 const shippingNote = () => document.getElementById('visor-shipping-note');
+const discountEl = () => document.getElementById('visor-cart-discount');
+const discountRow = () => document.getElementById('visor-discount-row');
 
 export function cartCount() {
   return Store.getCart().reduce((sum, item) => sum + item.qty, 0);
@@ -22,6 +25,11 @@ export function cartSubtotal() {
 }
 
 export function addToCart(productId, qty = 1) {
+  const product = findProduct(productId);
+  if (product && product.stock <= 0) {
+    toast('Este modelo está esgotado', 'error');
+    return;
+  }
   const cart = Store.getCart();
   const existing = cart.find((i) => i.id === productId);
   if (existing) {
@@ -30,7 +38,6 @@ export function addToCart(productId, qty = 1) {
     cart.push({ id: productId, qty });
   }
   Store.setCart(cart);
-  const product = findProduct(productId);
   toast(`${product?.name || 'Produto'} adicionado à sacola`, 'success');
   renderCart();
   updateBadge();
@@ -105,12 +112,32 @@ export function renderCart() {
   }
 
   const subtotal = cartSubtotal();
-  const shipping = subtotal >= CONFIG.freeShippingFrom || subtotal === 0 ? 0 : 29.9;
-  const total = subtotal + shipping;
+  const couponCode = Store.getCoupon();
+  const coupon = resolveCoupon(couponCode);
+  const discount = discountAmount(subtotal, couponCode);
+  const shipping =
+    subtotal >= CONFIG.freeShippingFrom || subtotal === 0 || coupon?.type === 'shipping'
+      ? 0
+      : 29.9;
+  const total = Math.max(0, subtotal - discount) + shipping;
 
-  if (subtotalEl) subtotalEl.textContent = formatPrice(subtotal);
-  if (shippingEl) shippingEl.textContent = shipping === 0 ? 'Grátis' : formatPrice(shipping);
-  if (totalEl) totalEl.textContent = formatPrice(total);
+  const sub = subtotalEl();
+  const ship = shippingEl();
+  const tot = totalEl();
+  if (sub) sub.textContent = formatPrice(subtotal);
+  if (ship) ship.textContent = shipping === 0 ? 'Grátis' : formatPrice(shipping);
+  if (tot) tot.textContent = formatPrice(total);
+
+  const row = discountRow();
+  const disc = discountEl();
+  if (row && disc) {
+    if (discount > 0) {
+      row.hidden = false;
+      disc.textContent = `− ${formatPrice(discount)} (${couponCode})`;
+    } else {
+      row.hidden = true;
+    }
+  }
 
   const note = shippingNote();
   if (note) {
@@ -118,7 +145,10 @@ export function renderCart() {
       note.textContent = `Frete grátis em compras acima de ${formatPrice(CONFIG.freeShippingFrom)}.`;
       note.classList.remove('is-free');
     } else if (shipping === 0) {
-      note.textContent = 'Você ganhou frete grátis neste pedido.';
+      note.textContent =
+        coupon?.type === 'shipping'
+          ? 'Cupom de frete grátis ativo.'
+          : 'Você ganhou frete grátis neste pedido.';
       note.classList.add('is-free');
     } else {
       const missing = CONFIG.freeShippingFrom - subtotal;
@@ -160,4 +190,5 @@ export function initCart() {
     updateBadge();
     renderCart();
   });
+  window.addEventListener('visor:coupon', renderCart);
 }
