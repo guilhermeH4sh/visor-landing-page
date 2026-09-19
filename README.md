@@ -6,23 +6,27 @@ Landing editorial da marca **VISOR** (óculos premium).
 
 - HTML estático de alta fidelidade
 - Tailwind CSS v4 (embutido)
-- Camada interativa em ES modules (`js/`, `css/app.css`)
+- Camada interativa em ES modules (`js/`, `css/app.css`, `css/pro.css`)
 - Tipografia: Playfair Display + Hanken Grotesk
 - Imagens em `assets/template/`
 
 ## Interatividade
 
 - Sacola com persistência local, frete grátis acima de R$ 399 e checkout demo
-- Busca ao vivo (`?q=` na URL) e visualização rápida de produtos
-- Favoritos sincronizados nos cards da coleção
-- Menu mobile, scroll suave e header com efeito ao rolar
-- Conta demo, newsletter validada, banner de cookies e botão WhatsApp
+- Cupons demo: `VISOR10`, `HORIZONTE50`, `FRETEGRATIS`
+- Filtros e ordenação na coleção (Sol / Grau)
+- Busca ao vivo (`?q=` / atalho `/`), visualização rápida com variantes
+- Favoritos, comparação de modelos e vistos recentemente
+- Avaliações, estoque e lightbox da galeria Instagram
+- Barra de progresso, voltar ao topo e atalhos (`B` sacola, `F` favoritos)
+- Conta demo, newsletter, cookies LGPD e WhatsApp
 
 ## Estrutura
 
 ```
 ├── index.html
 ├── css/app.css
+├── css/pro.css
 ├── js/
 ├── partials/app-shell.html
 ├── assets/template/

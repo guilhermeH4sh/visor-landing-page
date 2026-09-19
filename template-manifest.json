@@ -3,19 +3,27 @@
   "activeTemplate": "index.html",
   "assets": "assets/template/",
   "interactiveLayer": {
-    "css": "css/app.css",
+    "css": ["css/app.css", "css/pro.css"],
     "entry": "js/app.js",
     "shell": "partials/app-shell.html"
   },
   "features": [
     "cart",
+    "coupon",
     "search",
     "favorites",
     "quickview",
+    "filters",
+    "compare",
+    "recent",
+    "lightbox",
+    "scroll-chrome",
+    "shortcuts",
     "mobile-nav",
     "newsletter",
     "cookies",
     "whatsapp"
   ],
-  "updatedAt": "2026-08-28"
+  "coupons": ["VISOR10", "HORIZONTE50", "FRETEGRATIS"],
+  "updatedAt": "2026-09-18"
 }
